@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Login - Smart Attendance Monitoring System</title>
+  <style>
+
+      .logo {
+  color: pink;
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 25px;
+ 
+  
+}
+    :root {
+      --primary: #99000ddb;
+      --accent: #ef3b2c;
+      --accent-hover: #ef3b2cd8;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #fc0808;
+      --text-muted: black;
+      --border: grey;
+    }
+
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .header-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .header-logo h1 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .header-logo p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent-hover);
+    }
+
+    .footer-links {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  
+
+  <div class="container">
+    <div class="header-logo">
+      <h1>Faculty Portal</h1>
+      <p>Sign in to your account</p>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="logUser">Faculty ID or Email</label>
+        <input type="text" id="logUser" placeholder="Enter faculty ID or email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="logPass">Password</label>
+        <input type="password" id="logPass" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Sign In as Faculty</button>
+    </form>
+
+    <div class="footer-links">
+      Don't have a faculty account? <a href="facultyreg.html">Register here</a>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs & Faculty Login Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAUe90Z8XTSKSPJNwFEsV41ZQnv-oUGRmA",
+      authDomain: "smart-attendance-68397.firebaseapp.com",
+      projectId: "smart-attendance-68397",
+      storageBucket: "smart-attendance-68397.firebasestorage.app",
+      messagingSenderId: "47063749826",
+      appId: "1:47063749826:web:06b25a63b19836d009575b",
+      measurementId: "G-KBPYMMT4B1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.handleLogin = async function(e) {
+      e.preventDefault();
+      const identifier = document.getElementById('logUser').value.trim();
+      const pass = document.getElementById('logPass').value;
+
+      try {
+        const querySnapshot = await getDocs(collection(db, 'faculty'));
+        let foundUser = null;
+        
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.email === identifier || data.idNumber === identifier) {
+            foundUser = { id: doc.id, ...data };
+          }
+        });
+
+        if (!foundUser) {
+          alert('Invalid Faculty ID/Email or account not found in database.');
+          return;
+        }
+
+        if (foundUser.password && foundUser.password !== pass) {
+          alert('Incorrect password. Please try again.');
+          return;
+        }
+
+        localStorage.setItem('tcu_faculty_user', JSON.stringify(foundUser));
+        alert('Login successful! Redirecting to faculty portal...');
+        window.location.href = 'admin.html';
+
+      } catch (error) {
+        console.error("Login error: ", error);
+        alert("Failed to connect to database during login. Please try again.");
+      }
+    };
+  </script>
+</body>
+</html>

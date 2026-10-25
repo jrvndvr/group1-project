@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Registration - Smart Attendance System</title>
+  <style>
+    :root {
+      --bg-color: rgb(97, 12, 12);
+      --card-bg: #3e0404;
+      --text-primary: #f8fafc;
+      --text-secondary: whitesmoke;
+      --border-color: rgba(255, 255, 255, 0.921);
+      --accent-red: #ed1c24;
+      --accent-blue: #1a4da6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
+
+    header { background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid var(--accent-red); position: sticky; top: 0; z-index: 100; }
+    nav { max-width: 1200px; margin: 0 auto; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo-container { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #fff; font-weight: 700; }
+    .logo-container img { height: 48px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 1.25rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fca311; }
+    .btn-login-nav { background-color: var(--accent-red); color: #fff !important; padding: 0.35rem 0.85rem; border-radius: 6px; font-weight: 600 !important; }
+
+    .main-container { max-width: 500px; margin: 2rem auto; width: 100%; padding: 0 1rem; flex: 1; }
+    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 2rem; }
+    .card-title { font-size: 1.5rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 0.5rem; }
+    .card-subtitle { font-size: 0.85rem; color: var(--text-secondary); text-align: center; margin-bottom: 1.5rem; }
+
+    .form-group { display: flex; flex-direction: column; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.3rem; }
+    .form-control { width: 100%; padding: 0.7rem; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #fff; font-size: 0.875rem; outline: none; }
+    .form-control:focus { border-color: var(--accent-blue); }
+
+    .btn-submit { width: 100%; padding: 0.8rem; background: var(--accent-blue); color: #fff; border: none; border-radius: 6px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-top: 1rem; }
+    .btn-submit:hover { background: #153c8a; }
+
+    .switch-mode { text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary); }
+    .switch-mode a { color: #fca311; text-decoration: none; font-weight: 600; }
+  </style>
+  <link rel="stylesheet" href="glass-theme.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="logo-container">
+        <img src="tcu-removebg-preview (1).png" alt="TCU Logo">
+        <span>TCU Attendance</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="facultylog.html" class="btn-login-nav">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    <div class="card">
+      <h2 class="card-title">Create Faculty Account</h2>
+      <p class="card-subtitle">Register your details for class tracking</p>
+
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="regName" class="form-control" placeholder="e.g., Juan Dela Cruz" required>
+        </div>
+
+        <div class="form-group">
+          <label>Faculty ID Number</label>
+          <input type="text" id="regId" class="form-control" placeholder="e.g., 2026-FAC001" required>
+        </div>
+
+        <div class="form-group">
+          <label>TCU Email Address</label>
+          <input type="email" id="regEmail" class="form-control" placeholder="username@tcu.edu.ph" required>
+        </div>
+
+        <!-- Department Selection -->
+        <div class="form-group">
+          <label>Department / College</label>
+          <select id="regDept" class="form-control" required>
+            <option value="">Select Department</option>
+            <option value="CICT">CICT</option>
+            <option value="CCJ">CCJ</option>
+            <option value="CHTM">CHTM</option>
+            <option value="CILT">CILT</option>
+            <option value="CBM">CBM</option>
+            <option value="CAS">CAS</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label style="color: #38bdf8;">Faculty Access Code / Authorization Key</label>
+          <input type="password" id="regFacultyCode" class="form-control" placeholder="Enter authorized security key" required>
+          <small style="color: #94a3b8; font-size: 0.75rem; margin-top: 0.25rem;">Required for faculty verification.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="regPass" class="form-control" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Register Faculty Account</button>
+      </form>
+
+      <div class="switch-mode">
+        Already have a faculty account? <a href="facultylog.html">Login here</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Firebase Integration Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAUe90Z8XTSKSPJNwFEsV41ZQnv-oUGRmA",
+      authDomain: "smart-attendance-68397.firebaseapp.com",
+      projectId: "smart-attendance-68397",
+      storageBucket: "smart-attendance-68397.firebasestorage.app",
+      messagingSenderId: "47063749826",
+      appId: "1:47063749826:web:06b25a63b19836d009575b",
+      measurementId: "G-KBPYMMT4B1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.handleRegister = async function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('regName').value.trim();
+      const id = document.getElementById('regId').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const department = document.getElementById('regDept').value;
+      const pass = document.getElementById('regPass').value;
+      const enteredCode = document.getElementById('regFacultyCode').value.trim();
+
+      const validFacultySecrets = [
+        "TCU-FACULTY-2026", "TCU-FACULTY-2027", "TCU-FACULTY-2028", "TCU-FACULTY-2029", "TCU-FACULTY-2030"
+      ];
+
+      if (!validFacultySecrets.includes(enteredCode)) {
+        alert('Access Denied: Invalid Faculty Authorization Code! Only authorized professors can register.');
+        return;
+      }
+
+      const userData = { 
+        fullName: name, 
+        idNumber: id, 
+        email: email, 
+        department: department,
+        role: 'faculty',
+        registeredAt: serverTimestamp() 
+      };
+
+      try {
+        // Save to Firebase Firestore online under 'faculty' collection
+        await addDoc(collection(db, 'faculty'), userData);
+
+        // Backup to LocalStorage para sa login system
+        let facultyList = JSON.parse(localStorage.getItem('tcu_registered_faculty')) || [];
+        facultyList.push({ name, id, email, department, pass });
+        localStorage.setItem('tcu_registered_faculty', JSON.stringify(facultyList));
+
+        alert('Faculty account registered successfully online!');
+        window.location.href = 'facultylog.html';
+
+      } catch (error) {
+        console.error("Error saving data to Firebase: ", error);
+        alert("Failed to register to database. Please check your internet connection.");
+      }
+    };
+  </script>
+</body>
+</html>

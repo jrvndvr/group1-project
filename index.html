@@ -9,19 +9,18 @@
 body {
   margin: 0;
   font-family: Arial;
-  background-color: rgba(215, 5, 5, 0.896);
+  background-color: #630404;
 }
 
 /* Top navigation bar */
 ul {
-  background-color: rgb(57, 57, 57);
+  background-color: #EEEEEE;
   list-style-type: none;
   margin: 0;
   padding: 15px;
   display: flex;
   align-items: center;
 }
-
 
 
 /* Each menu item */
@@ -31,7 +30,7 @@ li {
 
 /* Menu links */
 li a {
-  color: white;
+  color: rgba(7, 7, 7, 0.836);
   padding: 15px;
   text-decoration: none;
   display: block;
@@ -39,15 +38,15 @@ li a {
 
 /* Menu hover color */
 li a:hover {
-  background-color:rgba(128, 128, 128, 0.825);
-  color: black;
+  background-color:#630404e0;
+  color: rgb(255, 255, 255);
 }
 
 /* Dropdown menu */
 .dropdown {
   display: none;
   position: absolute;
-  background-color: rgba(128, 128, 128, 0.825);
+  background-color: #EEEEEE;
   min-width: 150px;
 }
 
@@ -63,35 +62,31 @@ li:hover .dropdown {
 
 /* Dropdown hover color */
 .dropdown a:hover {
-  background-color: rgb(217, 71, 71);
-  color: black;
+  background-color: #630404;
+  color: white;
 }
 
 /* Main page content */
 .content {
   text-align: center;
   padding: 60px;
+  
 }
 
 /* Main heading */
 h1 {
-  color: black;
+  color: whitesmoke;
 }
 
 /* Subheading */
 h2 {
-  color:black;
+  color:rgba(245, 245, 245, 0.89);
 }
 
-/* Button design */
-button {
-  padding: 12px 20px;
-  background-color: yellow;
-  color: black;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
+h3{
+  color: rgba(245, 245, 245, 0.89);
 }
+
 
 /* Social media links */
 .social {
@@ -108,8 +103,8 @@ button {
 
 
 .menu {
-            background-color: lightcoral;
-            border: 3px solid brown;
+            background-color: #830000;
+            border: 3px solid #EEEEEE;
             border-radius: 12px;
             text-align: center;
             margin: 30px auto;
@@ -117,6 +112,8 @@ button {
             font-weight: bold;
             padding: 15px 30px;
             width: 300px;
+            color: whitesmoke; 
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
          
         }
 </style>
@@ -137,7 +134,7 @@ function changeBackgroundO() {
 <ul>
   <!-- Logo -->
   <div class="logo">
-   <img src="tcu-removebg-preview (1).png" alt="City of Taguig Logo" width="120" height="120">
+   <img src="tculogo.png" alt="City of Taguig Logo" width="120" height="120">
   </div>
 
     
@@ -160,28 +157,13 @@ function changeBackgroundO() {
 
   <!-- Product -->
   <li>
-    <a href="#">Product</a>
+    <a href="#">University Updates</a>
   </li>
 
-  <!-- Schedule -->
-  <li>
-    <a href="#">My Schedule</a>
-    <!-- Dropdown menu -->
-    <div class="dropdown">
-      <a href="SCHEDULE.HTML">Schedule</a>
-      <a href="#">Church</a>
-      <a href="#">Gala</a>
-    </div>
-  </li>
-
-  <!-- TCU -->
-  <li>
-    <a href="#">TCU</a>
-  </li>
-
+ 
   <!-- Facebook -->
   <li>
-    <a href="https://www.facebook.com">Facebook</a>
+    <a href="https://www.facebook.com/TaguigCityUniversity">Facebook</a>
   </li>
 
   <!-- Email -->
@@ -189,24 +171,25 @@ function changeBackgroundO() {
     <a href="mailto:example@gmail.com">Email</a>
   </li>
 
-  <!-- Instagram -->
+  <!-- YouTube -->
   <li>
-    <a href="https://www.instagram.com">Instagram</a>
+    <a href="https://www.youtube.com/@TaguigCityUniversity">YouTube</a>
   </li>
 </ul>
 
 <!-- Main content -->
 <div class="content">
-  <h1>SMART ATTENDANCE MONITORING SYSTEM WITH QR CODE INTEGRATION</h1>
-  <h2>Fast, Secure, and Smart Class Attendance</h2>
-  <h3>Seamlessly track attendance by scanning class QR codes. Built for modern students and administrators to manage reports instantly.</>
-
+  <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;">SMART ATTENDANCE MONITORING SYSTEM WITH QR CODE INTEGRATION</h1>
+  <h2 style="font-family: Lucida Handwriting, cursive;">Fast, Secure, and Smart Class Attendance</h2>
+  <h2 style="font-family: Garamond, serif;"> Seamlessly track attendance by scanning class QR codes. <p>Built for modern students and administrators to manage reports instantly.</p></h2>
+  
+ 
   
 
   <!--MENU-->
 </div>
     <div class="menu" onclick="window.location.href='student.html'">Student</div>
-    <div class="menu" onclick="window.location.href='admin.html'">Faculty</div>
+    <div class="menu" onclick="window.location.href='faculty_login.html'">Faculty</div>
     
 
 

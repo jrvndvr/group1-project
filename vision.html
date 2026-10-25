@@ -1,15 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<title>My Profile</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background-color: maroon;
+  color: #3e0d1a;
+}
+ul {
+  background-color:light maroon;
+  list-style-type: none;
+  margin: 0;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  color: pink;
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 25px;
+}
+li { position: relative; }
+li a {
+  color: pink;
+  padding: 15px;
+  text-decoration: none;
+  display: block;
+}
+li a:hover { 
+  background-color: maroon;
+ }#673AB7
+.dropdown {
+   display: none; 
+   position: absolute; 
+   background-color: maroon; 
+   min-width: 150px; 
+  }
+li:hover .dropdown { display: block; }
+.dropdown a { padding: 12px; }
+.dropdown a:hover { background-color:maroon; }
+
+.content { padding: 30px; text-align: center; }
+.profile-card {
+  background: white;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-top: 6px solid maroon;
+}
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid pink;
+  object-fit: cover;
+}
+.profile-card h2 { color: maroon; margin-bottom: 5px; }
+.profile-card p { color: #555; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 25px;
+}
+.gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #EDE7F6;
+  transition: 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  border-color: maroon;
+}
+.caption {
+  font-size: 14px;
+  color: maroon;
+  margin-top: 5px;
+  font-weight: bold;
+}
+</style>
 </head>
-<body style="background-color: rgb(133, 11, 11);">
-    <h1>
-    <p>Vision: An eminent center of excellent higher education towards societal advancement</p>
-    <p>Mission: To nurture a vibrant culture of academic wellness responsive to the challenges of technology and the global community.</p>
-    <p>Philosophy: Transformation for a caring community and an ecologically balanced county</p>
-    </h1>
+<body>
+
+<ul>
+  <div class="logo">TCU</div>
+  <li><a href="index.html">Home</a></li>
+</ul>
+
+<div class="content">
+  <div class="profile-card">
+    <!-- MAIN PROFILE PICTURE - CHANGE THIS -->
+
+    
+    <h1>Taguig City University</h1>
+    <p>Central Bicutan, Taguig City</p>
+    <p>Founded in 2006</p>
+
+    <hr style="height:2px; background:#EDE7F6; border:none; margin:20px 0;">
+
+    <h3 style="color:maroon;"></h3>
+    
+    <div class="gallery">
+      <!-- PICTURE 1 -->
+      <div>
+        <img src="mission.png" alt="My Picture 1">
+        <div class="caption">Mission</div>
+      </div>
+      <!-- PICTURE 2 -->
+      <div>
+        <img src="vision.png" alt="My Picture 2">
+        <div class="caption">Vision</div>
+      </div>
+      <!-- PICTURE 3 -->
+      <div>
+        <img src="philosophy.png" alt="My Picture 3">
+        <div class="caption">Philosophy</div>
+      </div>
+    
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
