@@ -1,10 +1,16 @@
 <!DOCTYPE html>
+<!-- Defines the document type as HTML5 -->
 <html lang="en">
 <head>
+  <!-- Sets character encoding to support all characters -->
   <meta charset="UTF-8">
+  <!-- Ensures the page is responsive on mobile and desktop screens -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Sets the title shown in the browser tab -->
   <title>Faculty Registration - Smart Attendance System</title>
+  
   <style>
+    /* Color variables used throughout the stylesheet */
     :root {
       --bg-color: #630404;
       --card-bg: #3e0404;
@@ -15,44 +21,206 @@
       --accent-blue: #1a4da6;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg-color); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
+    /* Resets default margins, paddings, and sets the font */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
 
-    header { background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid var(--accent-red); position: sticky; top: 0; z-index: 100; }
-    nav { max-width: 1200px; margin: 0 auto; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo-container { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #fff; font-weight: 700; }
-    .logo-container img { height: 48px; width: auto; object-fit: contain; }
-    .nav-links { display: flex; gap: 1.25rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: #fca311; }
-    .btn-login-nav { background-color: var(--accent-red); color: #fff !important; padding: 0.35rem 0.85rem; border-radius: 6px; font-weight: 600 !important; }
+    /* Sets the background color and layout for the full page */
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-    .main-container { max-width: 500px; margin: 2rem auto; width: 100%; padding: 0 1rem; flex: 1; }
-    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 2rem; }
-    .card-title { font-size: 1.5rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 0.5rem; }
-    .card-subtitle { font-size: 0.85rem; color: var(--text-secondary); text-align: center; margin-bottom: 1.5rem; }
+    /* Styles the sticky top header bar */
+    header {
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--accent-red);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-    .form-group { display: flex; flex-direction: column; margin-bottom: 1rem; }
-    .form-group label { font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.3rem; }
-    .form-control { width: 100%; padding: 0.7rem; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #fff; font-size: 0.875rem; outline: none; }
-    .form-control:focus { border-color: var(--accent-blue); }
+    /* Aligns navigation items horizontally inside the header */
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    .btn-submit { width: 100%; padding: 0.8rem; background: var(--accent-blue); color: #fff; border: none; border-radius: 6px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-top: 1rem; }
-    .btn-submit:hover { background: #153c8a; }
+    /* Styles the logo and brand name wrapper */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+    }
 
-    .switch-mode { text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary); }
-    .switch-mode a { color: #fca311; text-decoration: none; font-weight: 600; }
+    /* Sets the size of the logo image */
+    .logo-container img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Styles the list of navigation links */
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    /* Styles individual navigation links */
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    /* Changes link color on hover */
+    .nav-links a:hover {
+      color: #fca311;
+    }
+
+    /* Styles the login button in the navigation bar */
+    .btn-login-nav {
+      background-color: var(--accent-red);
+      color: #fff !important;
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+    }
+
+    /* Centers and constrains the main form container */
+    .main-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      width: 100%;
+      padding: 0 1rem;
+      flex: 1;
+    }
+
+    /* Styles the registration form container card */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+
+    /* Styles the main card heading */
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Styles the subtitle text under the card heading */
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Wrapper for each form label and input pair */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    /* Styles the text label above inputs */
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Styles text boxes, email boxes, dropdowns, and password fields */
+    .form-control {
+      width: 100%;
+      padding: 0.7rem;
+      background: #0d1117;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.875rem;
+      outline: none;
+    }
+
+    /* Changes input border color when clicked/focused */
+    .form-control:focus {
+      border-color: var(--accent-blue);
+    }
+
+    /* Styles the form submission button */
+    .btn-submit {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--accent-blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    /* Darkens submit button on hover */
+    .btn-submit:hover {
+      background: #153c8a;
+    }
+
+    /* Styles the switch mode section at the bottom of the card */
+    .switch-mode {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Styles the login link inside the switch mode section */
+    .switch-mode a {
+      color: #fca311;
+      text-decoration: none;
+      font-weight: 600;
+    }
   </style>
+
+  <!-- Links external glass theme CSS file -->
   <link rel="stylesheet" href="glass-theme.css">
 </head>
 <body>
 
+  <!-- Top Navigation Header Section -->
   <header>
     <nav>
+      <!-- Logo and home link -->
       <a href="index.html" class="logo-container">
         <img src="tculogo.png" alt="TCU Logo">
-        <span>TCU Attendance</span>
+        <span>Taguig City University</span>
       </a>
+      <!-- Navigation menu links -->
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="facultylog.html" class="btn-login-nav">Login</a></li>
@@ -60,28 +228,36 @@
     </nav>
   </header>
 
+  <!-- Main Content Section containing the Registration Card -->
   <main class="main-container">
     <div class="card">
+      <!-- Card Heading -->
       <h2 class="card-title">Create Faculty Account</h2>
+      <!-- Card Subtitle -->
       <p class="card-subtitle">Register your details for class tracking</p>
 
+      <!-- Faculty Registration Form -->
       <form id="registerForm" onsubmit="handleRegister(event)">
+        
+        <!-- Input field for Full Name -->
         <div class="form-group">
           <label>Full Name</label>
           <input type="text" id="regName" class="form-control" placeholder="e.g., Juan Dela Cruz" required>
         </div>
 
+        <!-- Input field for Faculty ID Number -->
         <div class="form-group">
           <label>Faculty ID Number</label>
           <input type="text" id="regId" class="form-control" placeholder="e.g., 2026-FAC001" required>
         </div>
 
+        <!-- Input field for Email Address -->
         <div class="form-group">
           <label>TCU Email Address</label>
           <input type="email" id="regEmail" class="form-control" placeholder="username@tcu.edu.ph" required>
         </div>
 
-        <!-- Department Selection -->
+        <!-- Dropdown selection for Department/College -->
         <div class="form-group">
           <label>Department / College</label>
           <select id="regDept" class="form-control" required>
@@ -95,31 +271,38 @@
           </select>
         </div>
 
+        <!-- Input field for Faculty Authorization Key -->
         <div class="form-group">
           <label style="color: #38bdf8;">Faculty Access Code / Authorization Key</label>
           <input type="password" id="regFacultyCode" class="form-control" placeholder="Enter authorized security key" required>
           <small style="color: #94a3b8; font-size: 0.75rem; margin-top: 0.25rem;">Required for faculty verification.</small>
         </div>
 
+        <!-- Input field for Account Password -->
         <div class="form-group">
           <label>Password</label>
           <input type="password" id="regPass" class="form-control" placeholder="••••••••" required>
         </div>
 
+        <!-- Button to submit the registration form -->
         <button type="submit" class="btn-submit">Register Faculty Account</button>
       </form>
 
+      <!-- Link to switch back to the login page -->
       <div class="switch-mode">
         Already have a faculty account? <a href="facultylog.html">Login here</a>
       </div>
     </div>
   </main>
 
-  <!-- Firebase Integration Script -->
+  <!-- JavaScript Section handling Firebase and Form Submission -->
   <script type="module">
+    // Import Firebase App module
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    // Import Firestore database functions
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+    // Configuration keys for connecting to Firebase database
     const firebaseConfig = {
       apiKey: "AIzaSyAUe90Z8XTSKSPJNwFEsV41ZQnv-oUGRmA",
       authDomain: "smart-attendance-68397.firebaseapp.com",
@@ -130,12 +313,15 @@
       measurementId: "G-KBPYMMT4B1"
     };
 
+    // Initialize Firebase application and Firestore service
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    // Main function triggered when the registration form is submitted
     window.handleRegister = async function(e) {
-      e.preventDefault();
+      e.preventDefault(); // Prevents page from refreshing on submit
       
+      // Get and trim values entered in the input fields
       const name = document.getElementById('regName').value.trim();
       const id = document.getElementById('regId').value.trim();
       const email = document.getElementById('regEmail').value.trim();
@@ -143,15 +329,22 @@
       const pass = document.getElementById('regPass').value;
       const enteredCode = document.getElementById('regFacultyCode').value.trim();
 
+      // Array of security codes allowed to register
       const validFacultySecrets = [
-        "TCU-FACULTY-2026", "TCU-FACULTY-2027", "TCU-FACULTY-2028", "TCU-FACULTY-2029", "TCU-FACULTY-2030"
+        "TCU-FACULTY-2026", 
+        "TCU-FACULTY-2027", 
+        "TCU-FACULTY-2028", 
+        "TCU-FACULTY-2029", 
+        "TCU-FACULTY-2030"
       ];
 
+      // Check if the entered access code matches valid keys
       if (!validFacultySecrets.includes(enteredCode)) {
         alert('Access Denied: Invalid Faculty Authorization Code! Only authorized professors can register.');
-        return;
+        return; // Stops execution if code is invalid
       }
 
+      // Object containing user details to save in database
       const userData = { 
         fullName: name, 
         idNumber: id, 
@@ -162,18 +355,20 @@
       };
 
       try {
-        // Save to Firebase Firestore online under 'faculty' collection
+        // Step 1: Save data online to Firebase Firestore 'faculty' collection
         await addDoc(collection(db, 'faculty'), userData);
 
-        // Backup to LocalStorage para sa login system
+        // Step 2: Backup data to local storag0................................................................................................e for local login support
         let facultyList = JSON.parse(localStorage.getItem('tcu_registered_faculty')) || [];
         facultyList.push({ name, id, email, department, pass });
         localStorage.setItem('tcu_registered_faculty', JSON.stringify(facultyList));
 
+        // Show success message and redirect user to login page
         alert('Faculty account registered successfully online!');
         window.location.href = 'facultylog.html';
 
       } catch (error) {
+        // Catch and log any errors that occur during saving
         console.error("Error saving data to Firebase: ", error);
         alert("Failed to register to database. Please check your internet connection.");
       }
